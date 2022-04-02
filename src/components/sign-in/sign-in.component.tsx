@@ -1,5 +1,8 @@
 import { FC } from "react";
-import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
 interface SignInProps {}
 
@@ -7,6 +10,7 @@ export const SignIn: FC<SignInProps> = () => {
   const logGoogleUser = async () => {
     const response = await signInWithGooglePopup();
     console.log(response);
+    createUserDocumentFromAuth(response.user);
   };
 
   return (
