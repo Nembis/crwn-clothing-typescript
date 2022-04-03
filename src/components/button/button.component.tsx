@@ -6,7 +6,7 @@ interface ButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  buttonType: keyof typeof BUTTON_TYPE_CLASSES;
+  buttonType?: keyof typeof BUTTON_TYPE_CLASSES;
 }
 
 const BUTTON_TYPE_CLASSES = {
@@ -21,7 +21,9 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      className={`button-container ${
+        buttonType && BUTTON_TYPE_CLASSES[buttonType]
+      }`}
       {...otherProps}
     >
       {children}

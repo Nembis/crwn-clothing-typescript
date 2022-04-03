@@ -40,6 +40,8 @@ export const SignUpForm: FC<SignUpFormProps> = () => {
       );
 
       createUserDocumentFromAuth(response.user, { displayName });
+
+      setFormFields(defaultFormFields);
     } catch (err: any) {
       if (err.code === "auth/email-already-in-use") {
         alert("Email already in use.");
