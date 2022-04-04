@@ -4,11 +4,15 @@ import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import "./navigation.styles.scss";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { CartIcon } from "../../components/cart-icon/cart-icon.component";
+import { CartDropdowon } from "../../components/cart-dropdown/cart-dropdown.component";
+import { CartContext } from "../../contexts/cart.context";
 
 interface NavigationProps {}
 
 export const Navigation: FC<NavigationProps> = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <>
@@ -29,7 +33,9 @@ export const Navigation: FC<NavigationProps> = () => {
               Sign In
             </Link>
           )}
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdowon />}
       </div>
       <Outlet />
     </>
