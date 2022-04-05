@@ -1,21 +1,21 @@
 import { FC } from "react";
-import "./category-item.styles.scss";
+import "./directory-item.styles.scss";
 
 interface CategoryItemProps {
   title: string;
   imageUrl: string;
 }
 
-export const CategoryItem: FC<CategoryItemProps> = ({ title, imageUrl }) => {
+export const DirectoryItem: FC<CategoryItemProps> = ({ title, imageUrl }) => {
   return (
-    <div className="category-container">
+    <div className="directory-item-container">
       <div
         className="background-image"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="category-body-container">
+      <div className="body">
         <h2>{title}</h2>
         <p>Shop now</p>
       </div>
