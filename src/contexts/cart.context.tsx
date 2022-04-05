@@ -18,6 +18,7 @@ interface CartContextType {
   isCartOpen: boolean;
   setIsCartOpen: Dispatch<SetStateAction<boolean>>;
   cartItems: CartItem[];
+  removeItemFromCart: (product: ProductData) => void;
   addItemToCart: (product: ProductData) => void;
   cartCount: number;
 }
@@ -34,10 +35,23 @@ const addCartItem = (cartItems: CartItem[], product: ProductData) => {
   return [...cartItems, { ...product, quantity: 1 }];
 };
 
+const removeCartItem = (cartItems: CartItem[], product: ProductData) => {
+  const existInCart = cartItems.find((item) => item.id === product.id);
+
+  if (existInCart?.quantity === 1) {
+    return cartItems.filter((item) => item.id !== existInCart.id);
+  }
+
+  return cartItems.map((item) =>
+    item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+  );
+};
+
 export const CartContext = createContext<CartContextType>({
   isCartOpen: false,
   setIsCartOpen: () => null,
   cartItems: [],
+  removeItemFromCart: (product: ProductData) => null,
   addItemToCart: (product: ProductData) => null,
   cartCount: 0,
 });
@@ -51,10 +65,15 @@ export const CartProvider: FC<{}> = ({ children }) => {
     setCartItems((cartItem) => addCartItem(cartItem, product));
   };
 
+  const removeItemFromCart = (product: ProductData) => {
+    setCartItems((cartItem) => removeCartItem(cartItem, product));
+  };
+
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
+    removeItemFromCart,
     addItemToCart,
     cartCount,
   };
