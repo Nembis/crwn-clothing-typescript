@@ -23,6 +23,7 @@ export const UserContext = createContext<UserContextType>({
 });
 
 export const UserProvider: FC<{}> = ({ children }) => {
+  //going to update this context to sue a reducer to learn
   const [currentUser, setCurrentUser] =
     useState<UserContextType["currentUser"]>(null);
   const value: UserContextType = { currentUser, setCurrentUser };
