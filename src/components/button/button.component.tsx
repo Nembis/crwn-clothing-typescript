@@ -1,5 +1,9 @@
 import { Children, FC } from "react";
-import "./button.styles.scss";
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+} from "./button.styles";
 
 interface ButtonProps
   extends React.DetailedHTMLProps<
@@ -14,19 +18,24 @@ const BUTTON_TYPE_CLASSES = {
   inverted: "inverted",
 };
 
+const getBUtton = (buttonType: ButtonProps["buttonType"]) => {
+  switch (buttonType) {
+    case "google":
+      return GoogleSignInButton;
+    case "inverted":
+      return InvertedButton;
+    default:
+      return BaseButton;
+  }
+};
+
 export const Button: FC<ButtonProps> = ({
   children,
   buttonType,
   ...otherProps
 }) => {
-  return (
-    <button
-      className={`button-container ${
-        buttonType && BUTTON_TYPE_CLASSES[buttonType]
-      }`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  );
+  const CustomButton = getBUtton(buttonType);
+
+  //@ts-ignore
+  return <CustomButton {...otherProps}>{children}</CustomButton>;
 };
