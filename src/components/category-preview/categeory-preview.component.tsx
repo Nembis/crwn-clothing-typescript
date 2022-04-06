@@ -1,6 +1,10 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import "./category-preview.styles.scss";
+import {
+  CategorPreviewContainer,
+  Preview,
+  Title,
+} from "./category-preview.styles";
 import { CategoryItems } from "../../contexts/categories.context";
 import { ProductCard } from "../product-card/product-card.component";
 
@@ -14,19 +18,17 @@ export const CategoryPreview: FC<CategoryPreviewProps> = ({
   products,
 }) => {
   return (
-    <div className="category-preview-container">
+    <CategorPreviewContainer>
       <h2>
-        <Link to={title} className="title">
-          {title}
-        </Link>
+        <Title to={title}>{title}</Title>
       </h2>
-      <div className="preview">
+      <Preview>
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
-    </div>
+      </Preview>
+    </CategorPreviewContainer>
   );
 };

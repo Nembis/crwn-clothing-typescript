@@ -1,5 +1,5 @@
 import { FC, useContext, useState, useEffect } from "react";
-import "./category.styles.scss";
+import { CategoryContainer, CategoryTitle } from "./category.styles";
 import { useParams } from "react-router-dom";
 import {
   CategoryContext,
@@ -22,13 +22,13 @@ export const Category: FC<CategoryProps> = () => {
 
   return (
     <>
-      <h2 className="category-title">{category && category.toUpperCase()}</h2>
-      <div className="category-container">
+      <CategoryTitle>{category && category.toUpperCase()}</CategoryTitle>
+      <CategoryContainer>
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
+      </CategoryContainer>
     </>
   );
 };

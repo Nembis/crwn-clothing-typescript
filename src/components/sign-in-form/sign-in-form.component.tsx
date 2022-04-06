@@ -1,5 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInAuthWithEmailAndPassword,
@@ -7,7 +6,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "../button/button.component";
 import { FormInput } from "../form-input/form-input.component";
-import "./sign-in-form.styles.scss";
+import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
 
 interface SignInFormProps {}
 
@@ -17,7 +16,6 @@ const defaultFormFields = {
 };
 
 export const SignInForm: FC<SignInFormProps> = () => {
-  const { setCurrentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -35,7 +33,7 @@ export const SignInForm: FC<SignInFormProps> = () => {
     e.preventDefault();
 
     try {
-      const response = await signInAuthWithEmailAndPassword(email, password);
+      await signInAuthWithEmailAndPassword(email, password);
     } catch (err: any) {
       switch (err.code) {
         case "auth/wrong-password":
@@ -51,7 +49,7 @@ export const SignInForm: FC<SignInFormProps> = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -73,13 +71,13 @@ export const SignInForm: FC<SignInFormProps> = () => {
           value={password}
         />
 
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Sign in</Button>
           <Button buttonType="google" type="button" onClick={signInWithGoogle}>
             Google sign in
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };

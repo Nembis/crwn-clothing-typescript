@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from "react";
-import "./form-input.styles.scss";
+import { FormInputLabel, Input, Group } from "./form-input.styles";
 
 interface FormInputProps {
   label: string;
@@ -12,15 +12,11 @@ interface FormInputProps {
 
 export const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
   return (
-    <div className="group">
-      <input className="form-input" {...otherProps} />
-      <label
-        className={`${
-          otherProps.value.length ? "shrink" : ""
-        } form-input-label`}
-      >
+    <Group>
+      <Input {...otherProps} />
+      <FormInputLabel shrink={otherProps.value.length ? true : false}>
         {label}
-      </label>
-    </div>
+      </FormInputLabel>
+    </Group>
   );
 };

@@ -7,8 +7,6 @@ interface CategoriesPreviewProps {}
 export const CategoriesPreview: FC<CategoriesPreviewProps> = () => {
   const { categories } = useContext(CategoryContext);
 
-  console.log(categories);
-
   return (
     <>
       {Object.keys(categories).map((key) => {
