@@ -1,13 +1,5 @@
-import {
-  FC,
-  useEffect,
-  useState,
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useReducer,
-} from "react";
 import { User } from "firebase/auth";
+import { createContext, FC, useEffect, useReducer } from "react";
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
