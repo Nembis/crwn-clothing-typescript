@@ -6,9 +6,13 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
-import Data from "../shop-data.json";
 
-type ProductData = typeof Data[0];
+interface ProductData {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+}
 
 interface CartItem extends ProductData {
   quantity: number;

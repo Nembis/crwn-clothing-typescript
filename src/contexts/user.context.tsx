@@ -15,7 +15,7 @@ import {
 
 interface UserContextType {
   currentUser: User | null;
-  setCurrentUser: Dispatch<SetStateAction<User | null>>;
+  setCurrentUser: (user: User | null) => void;
 }
 
 interface UserState {
@@ -51,10 +51,11 @@ const userReducer = (state: UserState, action: UserActions) => {
 
 export const UserProvider: FC<{}> = ({ children }) => {
   //going to update this context to sue a reducer to learn
-  const [state, dispatch] = useReducer(userReducer, INITAL_STATE);
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITAL_STATE);
 
-  const [currentUser, setCurrentUser] =
-    useState<UserContextType["currentUser"]>(null);
+  const setCurrentUser = (user: User | null) =>
+    dispatch({ type: "SET_CURRENT_USER", payload: { currentUser: user } });
+
   const value: UserContextType = { currentUser, setCurrentUser };
 
   useEffect(() => {
