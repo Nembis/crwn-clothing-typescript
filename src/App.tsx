@@ -24,8 +24,7 @@ const App = () => {
     });
 
     return unsubscript;
-    //@ts-ignore
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>

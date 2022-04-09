@@ -1,5 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,

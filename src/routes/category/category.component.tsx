@@ -1,17 +1,16 @@
-import { FC, useContext, useState, useEffect } from "react";
-import { CategoryContainer, CategoryTitle } from "./category.styles";
+import { FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  CategoryContext,
-  CategoryItems,
-} from "../../contexts/categories.context";
 import { ProductCard } from "../../components/product-card/product-card.component";
+import { CategoryItems } from "../../contexts/categories.context";
+import { selectCategories } from "../../store/categories/category.selector";
+import { CategoryContainer, CategoryTitle } from "./category.styles";
 
 interface CategoryProps {}
 
 export const Category: FC<CategoryProps> = () => {
   const { category } = useParams();
-  const { categories } = useContext(CategoryContext);
+  const categories = useSelector(selectCategories);
   const [products, setProducts] = useState<CategoryItems[]>([]);
 
   useEffect(() => {

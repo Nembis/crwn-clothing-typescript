@@ -13,7 +13,7 @@ export interface CategoriesState {
 
 export interface CategoriesActions {
   type: CATEGORIES_ACTION_TYPES.SET_CATEGORIES_MAP;
-  payload: {};
+  payload: CategoriesState["categories"];
 }
 
 export enum CATEGORIES_ACTION_TYPES {

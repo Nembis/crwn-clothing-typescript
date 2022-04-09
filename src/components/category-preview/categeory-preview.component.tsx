@@ -1,12 +1,11 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { CategoryItems } from "../../contexts/categories.context";
+import { ProductCard } from "../product-card/product-card.component";
 import {
   CategorPreviewContainer,
   Preview,
   Title,
 } from "./category-preview.styles";
-import { CategoryItems } from "../../contexts/categories.context";
-import { ProductCard } from "../product-card/product-card.component";
 
 interface CategoryPreviewProps {
   title: string;
