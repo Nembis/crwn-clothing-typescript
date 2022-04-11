@@ -11,6 +11,7 @@ import {
   HeaderBlock,
   Total,
 } from "./checkout.styles";
+import { PaymentForm } from "../../components/payment-form/payment-form.component";
 
 interface CheckoutProps {}
 
@@ -42,6 +43,7 @@ export const Checkout: FC<CheckoutProps> = () => {
       ))}
 
       <Total>Total: ${cartTotal}</Total>
+      <PaymentForm />
     </CheckoutContainer>
   );
 };
